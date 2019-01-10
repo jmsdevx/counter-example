@@ -1,24 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Add from "./components/Add";
+import Sub from "./components/Sub";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      number: 0
+    };
+    this.addToNumber = this.addToNumber.bind(this);
+    this.subFromNumber = this.subFromNumber.bind(this);
+  }
+
+  addToNumber() {
+    let newNum = this.state.number;
+    this.setState({ number: newNum + 1 });
+  }
+
+  subFromNumber() {
+    let newNum = this.state.number;
+    this.setState({ number: newNum - 1 });
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h1>Counter Example</h1>
+          <div className="number">{this.state.number}</div>
+          <div>
+            <Add addToNumber={this.addToNumber} />
+            <Sub subFromNumber={this.subFromNumber} />
+          </div>
         </header>
       </div>
     );
